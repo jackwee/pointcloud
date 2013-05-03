@@ -189,11 +189,7 @@
 				"p2_ballinvasion"
 				];*/
 				var targetImages = [
-				"testimg1",
-				"testimg2",
-				"testimg3",
-				"testimg4",
-				"testimg5"				
+				"testimg1"			
 				];
 				
 				
@@ -204,6 +200,45 @@
 					viper.log(value+"aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 					viper.log("onStartupInfoDone:"+viper.activateReferenceImage(id));
+				}
+				
+				viper.requireRealityMap();
+			}
+
+
+			function findfun1() {
+				
+			viper.log("begin..findfun1...");
+			
+				var targetImages = [				
+				"testimg2",
+				"testimg3"							
+				];
+				
+				
+				for (var i in targetImages) {
+					var id = targetImages[i];	
+
+					var value = document.getElementById(id);					
+					viper.activateReferenceImage(id);
+				}
+				
+				viper.requireRealityMap();
+			}
+			function findfun2() {
+				
+			viper.log("begin..findfun2...");
+			
+				var targetImages = [				
+				"testimg4",
+				"testimg5"							
+				];
+				
+				for (var i in targetImages) {
+					var id = targetImages[i];	
+
+					var value = document.getElementById(id);					
+					viper.activateReferenceImage(id);
 				}
 				
 				viper.requireRealityMap();
@@ -278,10 +313,11 @@
 		</style>	
 	</head>
 	<body>
-		<!-- <img src="http://www.xinsuncity.com/uploads/allimg/121228/2-12122Q05T9230.jpg"> -->
-		
-		<img src="http://jackwee.github.io/pointcloud/555.jpg" >
 
+		<button name="mybttn1" onclick="findfun1();">追踪目标一</button>
+		<button name="mybttn2" onclick="findfun2();">追踪目标二</button>
+
+		<!-- <img src="http://www.xinsuncity.com/uploads/allimg/121228/2-12122Q05T9230.jpg"> -->
 
 
 		<div id="viper.world_node" style="display:none;">
