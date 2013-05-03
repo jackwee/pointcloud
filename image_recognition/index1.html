@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+
+
+		<!-- <link rel="viper-reference-image" id="p2_ballinvasion" title="width:0.052m" href="http://192.168.145.22:8001/p2_ballinvasion.jpg"/> -->
+
+
+		<title>Image Recognition</title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+		<meta name="viper-init-options" content="pictures_hidden"/>
+		<meta name="viper-api-version" content="1.0"/>
+		
+		<link rel="icon" type="images/png" href="resources/images/favicon.png" />
+		<link rel="viper-app-icon" type="images/jpeg" href="resources/images/appicon.jpg"/>
+		
+		<link rel="stylesheet" href="../common/css/common.css" type="text/css" charset="utf-8"/>
+		
+		<script type="text/javascript" src="../common/js/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+		
+	
+
+		<!-- <link  rel="viper-reference-image" id="testimg1" href="http://ex.pointcloud.io/demo/resources/images/targets/p1_mobilehand.jpg"> -->
+
+
+		<link rel="viper-reference-image" id="p1_metro" title="width:0.050m" href="http://ex.pointcloud.io/demo/resources/images/targets/p1_mobilehand.jpg"/>
+		<link rel="viper-reference-image" id="p2_ballinvasion" title="width:0.052m" href="http://www.xinsuncity.com/uploads/allimg/121228/2-12122Q05T9230.jpg"/>
+		<link rel="viper-reference-image" id="p2_binoculars" title="width:0.201m" href="http://192.168.145.22/111.png"/>
+		<link rel="viper-reference-image" id="p2_contact" title="width:0.062m" href="http://ex.pointcloud.io/demo/resources/images/targets/p2_contact.jpg"/>
+		<link rel="viper-reference-image" id="p2_pointcloud" title="width:0.064m" href="http://ex.pointcloud.io/demo/resources/images/targets/p2_pointcloud.jpg"/>
+		
+		<script type="text/javascript">
+			var indicator = null;
+			var lastNode = null;
+			var slideshowState = {};
+			
+			function onViperReady() {
+				viper.setLoggingEnabled(true);
+				//viper.setBrowserBounce(false);
+				//viper.setTrackingLostAnimationEnabled(false);
+				viper.setHtmlResolution(6000); // 6000 px per meter, or 1000 px per 16.667 cm
+				/*for (var i = 0; i < 100; i++) {
+						viper.log("onViperReady start!!");
+				};*/
+
+			
+				
+				var observer = {
+					onMapCreatedWithImage : function(imageId) {
+						var elemId = imageId + "_node";
+						
+						// Show found node, hide the others
+						var nodes = document.getElementsByClassName("node");
+						for (var i in nodes) {
+							var node = nodes[i];
+							if (node.id == elemId) {
+								onNodeFound(node.id);
+								node.style.display = "block";
+							}
+							else {
+								node.style.display = "none";
+							}
+						}
+					},
+					
+					onMapDiscarded : function() {
+						// Map was discarded
+					},
+					
+					onTrackingLost : function() {
+						// Tracking was lost
+						onNodeLost();
+					},
+					
+					onTrackingDisabled : function() {
+						onNodeLost();
+					}
+					
+				}
+				
+				viper.setObserver(observer);
+			}
+			
+			function onAppLoaded() {
+				indicator = document.getElementById("indicator");
+				
+				showInfobox();
+			}
+			
+			function onNodeLost() {
+				indicator.className = "";
+				
+				if (lastNode == "p2_ballinvasion") {
+					stopSlideshow();
+				}
+			}
+			
+			function onNodeFound(nodeId) {
+				lastNode = nodeId;
+				indicator.innerHTML = "Found " + nodeId;
+				indicator.className = "visible";
+				
+				// Add a custom action to this specific node
+				if (nodeId == "p2_ballinvasion_node") {
+					viper.log("ball Invasionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+					startSlideshow();
+				}
+			}
+			
+			function startSlideshow() {
+				var elem = document.getElementById("ballinvasion_slideshow"); 
+				var images = elem.getElementsByTagName("img");
+				
+				// Restore
+				if (slideshowState.timerId) {
+					clearInterval(slideshowState.timerId);
+				}
+								
+				for (var i in images) {
+					var n = images[i];
+					n.className = "";
+				}
+				
+				// Set an interval
+				var timerId = setInterval(function() {
+										  
+					var currentIndex = slideshowState.currentIndex;
+					
+					if (currentIndex < 0) {
+						clearInterval(slideshowState.timerId);
+						return;
+					}
+					var n = slideshowState.images[currentIndex];
+					n.className = "hidden";
+					slideshowState.currentIndex--;
+				}, 1500);
+				
+				// Create a global state structure		
+				slideshowState = {
+					elem : elem,
+					images : images,
+					count : images.length,
+					currentIndex : images.length-1,
+					timerId : timerId,
+				}				
+			}
+			
+			function stopSlideshow() {
+				if (slideshowState.timerId) {
+					clearInterval(slideshowState.timerId);
+				}
+			}
+			
+			function showInfobox() {
+				// Shows a little infobox containing some basic information on what this web app is all about
+				//common.showStartupInfo($("#appinfo").html(), onStartupInfoDone);
+				onStartupInfoDone();
+			}
+			
+			function onStartupInfoDone() {
+				// This will initiate the SLAM initialization. When a map is created,
+				// onMapCreated in the callback structure will be called.
+				/*var targetImages = ["p1_mobilehand",
+									"p1_metro",
+									"p2_ballinvasion",
+									"p2_binoculars",
+									"p2_contact",
+									"p2_pointcloud",
+									];*/
+									viper.log("begin.....");
+			/*	for (var i in viper) {
+					viper.log(i);
+					viper.log(viper[i]);
+					
+				};*/
+				/*var targetImages = [
+				"p1_mobilehand",
+				"p2_ballinvasion"
+				];*/
+				var targetImages = [
+				"testimg1",
+				"testimg2"
+				
+				];
+				
+				
+				for (var i in targetImages) {
+					var id = targetImages[i];	
+
+					var value = document.getElementById(id);
+					viper.log(value+"aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+					viper.log("onStartupInfoDone:"+viper.activateReferenceImage(id));
+				}
+				
+				viper.requireRealityMap();
+			}
+			
+			</script>
+		
+		<style type="text/css">
+			#indicator {
+				background-color:rgba(255,255,255, 0.7);
+				-webkit-transition:all 0.3s ease-in-out;
+				-webkit-transform:translateX(-250px);
+				position:absolute;
+				width:250px;
+			
+				font-family:HelveticaNeue-Light;
+				color:#8800ff;
+				font-size:16px;
+				text-align:center;
+				padding-top:20px;
+				padding-bottom:20px;
+				-webkit-border-bottom-right-radius:10px;
+				-webkit-border-top-right-radius:10px;
+				left:0px;
+				bottom:20px;
+			}
+			
+			#indicator.visible {
+				-webkit-transform:translateX(10px);
+			}
+			
+			.contentnode {
+				position:absolute;
+				-webkit-transform-origin:top left;
+				-webkit-transform-style:preserve-3d;
+				
+				font-family:HelveticaNeue-Light;
+				background-color:rgba(255,255,255, 0.3);
+			}
+			
+			.contentnode p {
+				margin:10px;
+				text-align:center;
+				
+				color:#222222;
+				text-shadow:0px 1px 5px rgba(255,255,255, 0.5);
+			}
+			
+			.contentnode .link {
+				text-align:center;
+				padding:7px 0px 7px 0px;
+				font-family:HelveticaNeue-Light;
+				-webkit-border-radius:10px;
+				background-color:rgba(0,0,0, 0.5);
+				color:#ffffff;
+				font-size:26px;
+				width:340px;
+				height:70px;
+			}
+			
+			.contentnode .link span {
+				line-height:70px;
+				vertical-align:middle;
+			}
+
+			.contentnode .link:active {
+				background-color:rgba(0,32,64, 0.5);
+			}
+			
+			#ballinvasion_slideshow {
+				position:absolute;
+				width:282px;
+				height:390px;
+				-webkit-transform-style:preserve-3d;
+			}
+			
+			
+			#ballinvasion_slideshow img {
+				position:absolute;
+				width:282px;
+				height:390px;
+				-webkit-transition:all 0.6s linear;
+				-webkit-transform:rotateY(0deg);
+				-webkit-transform-origin:top left;
+			}
+			
+			#ballinvasion_slideshow img.hidden {
+				-webkit-transform:rotateY(-180deg);
+				opacity:0;
+			}
+
+		
+			
+			
+			
+			
+		</style>	
+	</head>
+	<body>
+		<!-- <img src="http://www.xinsuncity.com/uploads/allimg/121228/2-12122Q05T9230.jpg"> -->
+		<div style="width:20px;height:20px;background:#000000">
+
+		<!-- <link  rel="viper-reference-image"  id="testimg1"href="http://ex.pointcloud.io/demo/resources/images/targets/p1_mobilehand.jpg">  -->
+		<!-- <img id="testimg2"src="http://ex.pointcloud.io/demo/resources/images/targets/p1_mobilehand.jpg">  -->
+		<!-- <img id="testimg1" src="http://ex.pointcloud.io/demo/resources/images/targets/p1_mobilehand.jpg"> -->
+
+
+		<link  rel="viper-reference-image" id="testimg1" hrefs="http://192.168.145.22/mytest/111.jpg"> 
+		<link  rel="viper-reference-image" id="testimg2" href="http://www.xinsuncity.com/uploads/allimg/121228/2-12122Q05T9230.jpg">
+
+
+			
+		</div><!-- / -->
+		
+
+
+		<div id="viper.world_node" style="display:none;">
+			<div id="viper.scene_node">
+				<div id="testimg1_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:378.7px;height:261.4px;-webkit-transform:rotateZ(88.5deg) translateX(-178.1px) translateY(-113.7px);">
+						<!-- Hand with mobile screenshot -->
+						<div style="padding:30px">
+							<p>中文中文</p>
+							<p>中文中文测试.</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="viper.world_node" style="display:none;">
+			<div id="viper.scene_node">
+				<div id="testimg2_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:378.7px;height:261.4px;-webkit-transform:rotateZ(88.5deg) translateX(-178.1px) translateY(-113.7px);">
+						<!-- Hand with mobile screenshot -->
+						<div style="padding:30px">
+							<p>中文中文</p>
+							<p>中文中文测试.</p>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div id="p1_mobilehand_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:378.7px;height:261.4px;-webkit-transform:rotateZ(88.5deg) translateX(-178.1px) translateY(-113.7px);">
+						<!-- Hand with mobile screenshot -->
+						<div style="padding:30px">
+							<p>Any content inside the scene_node will be transformed to appear as if locked to reality</p>
+							<p>Any HTML5 content can be added; videos, images, links, divs, spans, etc.</p>
+						</div>
+					</div>
+				</div>
+				<div id="p1_metro_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:220.6px;height:321.2px;-webkit-transform:rotateZ(98deg) translateX(-118.3px) translateY(-175.6px);">
+						<!-- Metro -->
+						<div style="padding:20px">
+							<p>This is the Metro newspaper image</p>
+						</div>
+					</div>
+				</div>
+				<div id="p2_ballinvasion_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:282.3px;height:389.6px;-webkit-transform:rotateZ(90deg) translateX(-140.3px) translateY(-192.8px);">
+						<!-- Ball Invasion Slideshow with page flip -->
+						<div id="ballinvasion_slideshow">
+							<img src="resources/images/ballinvasion4.jpg"/>
+							<img src="resources/images/ballinvasion3.jpg"/>
+							<img src="resources/images/ballinvasion2.jpg"/>
+							<img src="resources/images/ballinvasion1.jpg"/>
+							<img src="resources/images/ballinvasion0.png"/>
+						</div>
+					</div>
+				</div>
+				<div id="p2_binoculars_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:1139.5px;height:326.2px;;-webkit-transform:rotateZ(90deg) translateX(-569.7px) translateY(-152.8px);">
+						<!-- Header -->
+						<div style="padding:20px">
+							<p>This is the Binoculars image</p>
+						</div>						
+					</div>
+				</div>
+				<div id="p2_contact_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:339.5px;height:68.0px;-webkit-transform:rotateZ(90deg) translateX(-169.8px) translateY(-60.2px);">
+						<!-- link -->
+						<div class="link" onclick="location.href='http://13thlab.com';"><span>Go to 13thlab.com</span></div>
+					</div>
+					<div class="contentnode" 
+						style="width:339.0px;height:67.4px;-webkit-transform:rotateZ(90deg) translateX(-169.8px) translateY(25.2px);">
+						<!-- link -->
+						<div class="link" onclick="location.href='mailto:info@13thlab.com';"><span>Email us</span></div>
+					</div>
+				</div>
+				<div id="p2_pointcloud_node" class="node" style="position:absolute;">
+					<div class="contentnode" 
+						style="width:328.9px;height:85.9px;-webkit-transform:rotateZ(90deg) translateX(-172.2px) translateY(-45.9px);">
+						<!-- link -->
+						<div class="link" onclick="http://developer.pointcloud.io"><span>Go to Developer site</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="indicator">Found image X</div>
+		
+		<!-- This actual div is never shown, we just use it for the startup info -->
+		<div style="display:none;" id="appinfo">
+			<p class="source">The source code for this web app is available at http://developer.pointcloud.io/browser<p>
+			<p>This basic web app shows how to use image recognition in combination with HTML in 3D ("augmentation mode").<p>
+		</div>
+		
+	</body>
+</html>
