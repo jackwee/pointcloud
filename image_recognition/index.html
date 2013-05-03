@@ -197,7 +197,7 @@
 
 					var value = document.getElementById(id);
 					viper.log("before:"+value.href);
-					value.href = "http://jackwee.github.io/pointcloud/333.jpg";
+					value.href = "http://jackwee.github.io/pointcloud/111.jpg";
 					viper.log("after:"+value.href);					
 					viper.activateReferenceImage(id);
 				}
@@ -209,15 +209,17 @@
 			viper.log("begin..findfun2...");
 			
 				var targetImages = [				
-				"testimg4",
-				"testimg5"							
+				"testimg1"							
 				];
 				
 				for (var i in targetImages) {
 					var id = targetImages[i];	
 					viper.log("fun2:"+id);	
 
-					var value = document.getElementById(id);					
+					var value = document.getElementById(id);	
+					viper.log("before:"+value.href);
+					value.href = "http://jackwee.github.io/pointcloud/222.jpg";
+					viper.log("after:"+value.href);					
 					viper.activateReferenceImage(id);
 				}
 				
