@@ -194,13 +194,13 @@
 				"testimg3"							
 				];
 				
-				viper.log("begin......222...");
+			
 				for (var i in targetImages) {
 					var id = targetImages[i];
 					viper.log("fun1:"+id);	
 
 					var value = document.getElementById(id);					
-					viper.activateReferenceImage(id);
+					viper.activateReferenceImage(value);
 				}
 				
 				//viper.requireRealityMap();
@@ -219,7 +219,7 @@
 					viper.log("fun2:"+id);	
 
 					var value = document.getElementById(id);					
-					viper.activateReferenceImage(id);
+					viper.activateReferenceImage(value);
 				}
 				
 				//viper.requireRealityMap();
