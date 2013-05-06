@@ -42,9 +42,7 @@
 				//viper.setBrowserBounce(false);
 				//viper.setTrackingLostAnimationEnabled(false);
 				viper.setHtmlResolution(6000); // 6000 px per meter, or 1000 px per 16.667 cm
-				/*for (var i = 0; i < 100; i++) {
-						viper.log("onViperReady start!!");
-				};*/
+				
 
 			
 				
@@ -247,6 +245,15 @@
 			viper.resetRealityMap();
 			
 			viper.core.NativeInterface.callObjectiveC("reset_realitymap");
+
+
+			var nodes = document.getElementsByClassName("node");
+				for (var i in nodes) {
+					var node = nodes[i];
+					
+						node.style.display = "none";
+					
+				}
 			}
 
 
