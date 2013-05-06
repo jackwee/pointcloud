@@ -217,11 +217,11 @@ function log10(objectToLog){
 	
 //打印viper中所有属性
 for (var i in objectToLog) {
-	//if ((indexNum >= (number - 10)) &&(indexNum < number)){
+	if ((indexNum >= (number - 10)) &&(indexNum < number)){
 	viper.log(i);
-	//viper.log(objectToLog[i]);
-	//viper.log("..........................");
-	//};
+	viper.log(objectToLog[i]);
+	viper.log("..........................");
+	};
 	indexNum++;
 	
 };
