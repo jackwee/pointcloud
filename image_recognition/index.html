@@ -192,6 +192,15 @@
 				var targetImages = [				
 				"testimg1"					
 				];
+
+				for (var i in targetImages) {
+					var id = targetImages[i];
+					viper.log("fun1:"+id);	
+
+
+					var value = document.getElementById(id);
+					viper.deactivateReferenceImage(id);
+				}
 				
 			
 				for (var i in targetImages) {
@@ -204,7 +213,7 @@
 					value.href = "http://jackwee.github.io/pointcloud/333.jpg";
 					viper.log("after:"+value.href);					
 					viper.activateReferenceImage(id);
-					//viper.deactivateReferenceImage(id);
+					
 				}
 				
 				//viper.requireRealityMap();
@@ -309,7 +318,7 @@
 		<link  rel="viper-reference-image" id="testimg3" href="http://jackwee.github.io/pointcloud/333.jpg">  -->
 		<link  rel="viper-reference-image" id="testimg4" href="http://jackwee.github.io/pointcloud/444.jpg">
 		<link  rel="viper-reference-image" id="testimg5" href="http://www.xinsuncity.com/uploads/allimg/130502/1452203292-0.jpg"> 
-		<img src="http://www.xinsuncity.com/uploads/allimg/130502/1452203292-0.jpg">
+		
 
 
  
