@@ -226,14 +226,14 @@
 				];
 				
 				for (var i in targetImages) {
-					var id = targetImages[i];	
+					/*var id = targetImages[i];	
 					viper.log("fun2:"+id);	
 
 					var value = document.getElementById(id);	
 					viper.log("before:"+value.href);
 					value.href = "http://jackwee.github.io/pointcloud/222.jpg";
 					viper.log("after:"+value.href);					
-					viper.activateReferenceImage(id);
+					viper.activateReferenceImage(id);*/
 				}
 				
 				//viper.requireRealityMap();
@@ -243,7 +243,7 @@
 				
 			viper.log("begin..resetButton...");
 			
-				viper.core.NativeInterface.callObjectiveC("reset_realitymap");
+			viper.core.NativeInterface.callObjectiveC("reset_realitymap");
 			}
 
 
