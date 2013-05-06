@@ -246,7 +246,7 @@
 			var number=0;
 			function log10(objectToLog){
 				number += 10;
-				viper.log("number:"+number);
+				viper.log("number:==================================================================="+number);
 
 				var indexNum = 0;
 				
@@ -254,7 +254,7 @@
 			for (var i in objectToLog) {
 				if ((indexNum >= (number - 10)) &&(indexNum < number)){
 				objectToLog.log(i);
-				objectToLog.log(viper[i]);
+				//objectToLog.log(viper[i]);
 				};
 				indexNum++;
 				
