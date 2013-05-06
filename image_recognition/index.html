@@ -241,11 +241,9 @@
 			function resetButton() {
 				
 			viper.log("begin..resetButton...");
+			viper.log(viper.getDeviceName());
 			viper.deactivateAllReferenceImages();
 			viper.resetRealityMap();
-			
-			viper.core.NativeInterface.callObjectiveC("reset_realitymap");
-
 			}
 
 
