@@ -185,6 +185,7 @@
 				
 			viper.log("begin..findfun1...");
 
+			//打印viper中所有属性
 			for (var i in viper) {
 				viper.log(i);
 			};
@@ -193,14 +194,12 @@
 				"testimg1"					
 				];
 
-				// for (var i in targetImages) {
-				// 	var id = targetImages[i];
-				// 	viper.log("fun1:"+id);	
+				if(viper.deactivateReferenceImage){
 
-
-				// 	var value = document.getElementById(id);
-				// 	viper.deactivateReferenceImage(id);
-				// }
+					viper.log("viper:deactivateReferenceImage............");
+					// 	viper.deactivateReferenceImage(id);
+				}
+				
 				
 			
 				for (var i in targetImages) {
