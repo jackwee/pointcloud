@@ -126,21 +126,23 @@ function onStartupInfoDone() {
 	// This will initiate the SLAM initialization. When a map is created,
 	// onMapCreated in the callback structure will be called.
 	
-	viper.log("begin..onStartupInfoDone...");
-
+	viper.log("begin.......onStartupInfoDone...");
+	viper.log("begin..333...");
 	//添加target图片
-	/*var targetImages = [
+	var targetImages = [
 	"testimg1"			
 	];
 	
 	
 	for (var i in targetImages) {
+		viper.log("begin..111...");
 		var id = targetImages[i];
 		var value = document.getElementById(id);
 		viper.log("onStartupInfoDone:"+viper.activateReferenceImage(id));
 	}
+	viper.log("begin..222...");
 	
-	viper.requireRealityMap();*/
+	viper.requireRealityMap();
 }
 
 
