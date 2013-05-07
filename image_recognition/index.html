@@ -1,21 +1,49 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	<meta name="viper-init-options" content="pictures_hidden" />
-	<meta name="viper-api-version" content="1.0" />
-	<meta charset="utf-8" />
-	<script type="text/javascript" src="../myjs/realsight.js"></script>
-	<link rel="viper-reference-image" id="testimg1" href="http://jackwee.github.io/pointcloud/111.jpg" />
-</head>
-<body>
-	<h1>PULL</h1>
-	<div id="viper.world_node" style="display:none;">
-		<div id="viper.scene_node">
-			<div id="testimg1_node" class="node" style="position:absolute; -webkit-transform:rotateZ(90deg) scale(4,4);">
-				<div class="contentnode" style="width:339.5px;height:68.0px;-webkit-transform:translateZ(-10px)  translateX(-169.8px) translateY(-30.2px) scale(2,2);">This is first message
+	<head>
+
+		<title>Image Recognition</title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+		<meta name="viper-init-options" content="pictures_hidden"/>
+		<meta name="viper-api-version" content="1.0"/>
+		<meta charset='utf-8'> 
+		<link rel="icon" type="images/png" href="resources/images/favicon.png" />
+		<link rel="viper-app-icon" type="images/jpeg" href="resources/images/appicon.jpg"/>
+		<link rel="stylesheet" href="../common/css/common.css" type="text/css" charset="utf-8"/>
+		<script type="text/javascript" src="../common/js/common.js"></script>
+
+		<script type="text/javascript" src="../myjs/realsight.js"></script>
+		<link  rel="viper-reference-image" id="testimg1" href="http://jackwee.github.io/pointcloud/111.jpg"> 
+			
+	
+	</head>
+	<body>
+
+		<div id="viper.world_node" style="display:none;">
+			<div id="viper.scene_node">
+
+
+				<div id="testimg1_node" class="node" style="position:absolute; -webkit-transform:rotateZ(90deg) scale(4,4);" >
+					<div class="contentnode" 
+						style="width:339.5px;height:68.0px;-webkit-transform: translateX(-169.8px) translateY(-60.2px) scale(8,8);">
+					
+						<div class="link" onclick="location.href='http://13thlab.com';"><p>Go to 13thlab.com</p></div>
+					</div>
+					<div class="contentnode" 
+						style="width:339.5px;height:68.0px;-webkit-transform:translateZ(-10px)  translateX(-169.8px) translateY(-30.2px) scale(2,2);">
+							<p>这是一段文字.</p>
+							
+					</div >
 				</div>
+
 			</div>
 		</div>
-	</div>
-<div id="indicator" style="display:none">&Found;&image;&X;</div>
-</body></html>
+		
+		<div id="indicator" style="display:none">Found image X</div>
+		<div style="display:none;" id="appinfo">
+			<p class="source">The source code for this web app is available at http://developer.pointcloud.io/browser<p>
+			<p>This basic web app shows how to use image recognition in combination with HTML in 3D ("augmentation mode").<p>
+		</div>
+		
+	</body>
+</html>
