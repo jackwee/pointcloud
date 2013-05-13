@@ -5,9 +5,9 @@ pwd
 cd  Users/Administrator/pointcloud
 pwd
 git add .
-pwd
+echo +++++++++++++++++++++1
 git commit -m "upload file..."
-pwd
+echo +++++++++++++++++++++2
 git push origin gh-pages
 echo --------------------------
 
