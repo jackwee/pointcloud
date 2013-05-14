@@ -1,6 +1,5 @@
 echo off
 echo ++++++++++++++++++++++++add
-pwd
 cd C:/Users/Administrator/pointcloud/
 pwd
 git add .
