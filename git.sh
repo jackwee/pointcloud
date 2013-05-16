@@ -1,10 +1,10 @@
 echo off
-echo ++++++++++++++++++++++++add
+echo ++++++++++++++++++++++++adding...
 cd C:/Users/Administrator/pointcloud/
 pwd
 git add .
-echo ++++++++++++++++++++++++commit
+echo ++++++++++++++++++++++++commiting...
 git commit -m "upload file..."
-echo ++++++++++++++++++++++++push
+echo ++++++++++++++++++++++++pushing...
 git push origin gh-pages
 echo ++++++++++++++++++++++++finish
